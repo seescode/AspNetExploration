@@ -13,9 +13,10 @@
     <div>
         @using (Html.BeginForm("Login", "Home", FormMethod.Post))
         {
-          @Html.AntiForgeryToken()
           <input type="submit" value="Log in" />
         }
+
+        @Html.ActionLink("Admin page", "Admin")
 
     </div>
 </body>

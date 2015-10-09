@@ -11,6 +11,8 @@ using Microsoft.Owin.Security;
 
 namespace LoginAnalysis.Controllers
 {
+
+	[Authorize]
     public class HomeController : Controller
     {
         // GET: Home
@@ -24,7 +26,6 @@ namespace LoginAnalysis.Controllers
 
 		[HttpPost]
 		[AllowAnonymous]
-		[ValidateAntiForgeryToken]
 		public ActionResult Login()
 		{
 			SignIn();
@@ -32,6 +33,11 @@ namespace LoginAnalysis.Controllers
 			return View("Index");
 		}
 
+		[HttpGet]
+		public ActionResult Admin()
+		{
+			return View();
+		}
 
 		private void SignIn()
 		{
@@ -46,5 +52,7 @@ namespace LoginAnalysis.Controllers
 			//In order to get access to GetOwinContext I had to nuget install Microsoft.Owin.Host.SystemWeb	
 			HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false}, identity);
 		}
+
+
     }
 }
